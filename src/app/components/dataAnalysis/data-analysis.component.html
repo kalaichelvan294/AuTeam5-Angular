@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="card-list">
+    <mat-grid-list cols="3" rowHeight="3:1">
+      <mat-grid-tile *ngFor="let tcard of cards;"> 
+        <app-card [cardData]="tcard" class="mat-elevation-z1"></app-card> 
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div class="data-table">
+    <app-datatable></app-datatable>
+  </div>
+</div>

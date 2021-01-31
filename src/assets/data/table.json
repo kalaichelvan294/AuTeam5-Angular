@@ -1,0 +1,15 @@
+[
+    { "flightNo" :1,  "flightDate" :"12 Jan 2020",  "legNumber" :12,  "origin" :"chennai",  "destination" :"trichy",  "releaseNumber" :1234,  "releaseTime" :"23:12:09"},
+    { "flightNo" :2,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"cuddalore",  "destination" :"madurai",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :3,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"kochi",  "destination" :"bangalore",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :4,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"bangalore",  "destination" :"america",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :5,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"madurai",  "destination" :"delhi",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :6,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"cuddalore",  "destination" :"kochi",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :7,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"bangalore",  "destination" :"madurai",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :8,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"goa",  "destination" :"goa",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :9,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"madurai",  "destination" :"madurai",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :10,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"villupuram",  "destination" :"bangalore",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :12,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"cuddalore",  "destination" :"madurai",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :11,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"delhi",  "destination" :"bangalore",  "releaseNumber" :312,  "releaseTime" :"12:02:09"},
+    { "flightNo" :21,  "flightDate" :"21 Jan 2020",  "legNumber" :321,  "origin" :"bangalore",  "destination" :"madurai",  "releaseNumber" :312,  "releaseTime" :"12:02:09"}
+]

@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-title">
+        {{ cardData['cardTitle'] }}
+    </div>
+    <div class="card-icon">
+        <mat-icon> {{ cardData['cardIcon'] }} </mat-icon>
+    </div>
+    <div class="card-data">
+        <div *ngIf="cardData['cardContent']; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock>{{ cardData['cardContent'] }}</ng-template>
+        <ng-template #elseBlock><mat-spinner [diameter]="30"></mat-spinner></ng-template>
+    </div>
+    <div class="card-hint">
+        <span>{{ cardData['cardHint'] }}</span>
+    </div>
+</div>

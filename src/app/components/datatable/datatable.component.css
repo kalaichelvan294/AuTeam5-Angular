@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+}
+th.mat-sort-header-sorted {
+    color: black;
+}
+th{
+    font-size: larger;
+    color:white;
+    background-color: #E16C20;
+}
+td{
+    font-size: medium;
+}
+.filter{
+    width:150px;
+    height:30px;
+    display: inline-block;
+    margin-right: 80px;
+    margin-top: 10px;
+    font-size: medium;
+}
+.filters{
+    padding-bottom: 15px;
+    width:100%;
+}
+.table-head{
+    margin-bottom:10px;
+    font-size:2.5rem;
+}
+.table-info{
+    padding: 10px;
+    font-size: 20px;
+}
+::ng-deep .mat-sort-header-arrow {
+    color: #fff;
+}
