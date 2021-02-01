@@ -6,19 +6,16 @@ import { Injectable } from '@angular/core';
 })
 export class CardApiService {
 
-  private _urlDomestic:string = "/assets/data/cardDomestic.json";
-  private _urlInternational:string = "/assets/data/cardInter.json";
-  private _urlIterations:string = "/assets/data/cardIterations.json";
+  //dummy
+  private _urlCardContent:string = "/assets/data/cardContent.json";
+
+  //Original
+  // private _urlCardContent:string = "/card/getCardContent";
 
   constructor(private http: HttpClient) { } 
 
-  getCardDomestic(){
-    return this.http.get(this._urlDomestic);
+  getCardContent(){
+    return this.http.get(this._urlCardContent);
   }
-  getCardInternational(){
-    return this.http.get(this._urlInternational);
-  }
-  getCardIterations(){
-    return this.http.get(this._urlIterations);
-  }
+
 }

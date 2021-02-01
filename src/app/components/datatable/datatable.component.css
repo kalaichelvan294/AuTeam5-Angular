@@ -20,6 +20,12 @@ td{
     margin-top: 10px;
     font-size: medium;
 }
+
+.filter-btn{
+    width:90px;    
+    display: inline-block;
+ }
+
 .filters{
     padding-bottom: 15px;
     width:100%;

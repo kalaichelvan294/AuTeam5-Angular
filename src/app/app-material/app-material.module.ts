@@ -1,5 +1,5 @@
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -12,7 +12,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   exports: [
@@ -22,7 +24,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatMenuModule, MatTableModule,
     MatSortModule, MatPaginatorModule,
     MatSelectModule, MatFormFieldModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule, MatNativeDateModule,
+    MatDatepickerModule, MatSnackBarModule,
   ]
 })
 export class AppMaterialModule { }

@@ -1,10 +1,14 @@
-import { FlightDataElement } from '../../dataStructures/FlightDataElement';
+import { FlightDataElement } from '../../doa/FlightDataElement';
 import { TableApiService } from './../../services/tableApi.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import * as _ from 'lodash';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-datatable',
@@ -15,49 +19,62 @@ export class DatatableComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'start';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   public originalData;
   public dataSource;
   public tableColumns = [
     'flightNo', 
     'flightDate', 
-    'legNumber', 
+    'legNo', 
     'origin', 
     'destination', 
     'releaseNumber', 
     'releaseTime'
   ];
-  public rowPerPage = [10, 20, 40, 80, 100];
-  public timeFilters = [ 1, 3, 6, 12, 24 ];
-  public currentTimeFilter;
+  public rowPerPage;
+  public timeFilters;
   public selectedTimeFilterValue;
-  public isTableDataLoading:boolean = true;
-  public isTableDataValid:boolean = false;
-  public filterOrigin:string="";
-  public filterDestination:string="";
+  public isTableDataLoading:boolean;
+  public isTableDataValid:boolean;
+  public filterOrigin:string;
+  public filterDestination:string;
+  public filterStartDate:Date;
+  public filterEndDate:Date;
+  public filterFlightNo:string;
+  public filterLegNo:string;
 
-  constructor(private _tableService:TableApiService) { }
+  constructor(private _tableService:TableApiService, private _snackBar: MatSnackBar) {
+    this.rowPerPage = [10, 20, 40, 80, 100];
+    this.timeFilters = [ 1, 3, 6, 12, 24 ]; // Last 'x' hours
+    this.isTableDataLoading = true;
+    this.isTableDataValid = false;
+    this.filterStartDate = new Date();
+    this.filterEndDate = new Date();
+    this.selectedTimeFilterValue = this.timeFilters[0];
+    this.filterDestination = "";
+    this.filterOrigin = "";
+    this.filterFlightNo = "";
+    this.filterLegNo = "";
+  }
 
   ngOnInit() {
-    this.selectedTimeFilterValue = this.timeFilters[0];
-    this.currentTimeFilter = this.timeFilters[0];
-    this.initTableData(this.selectedTimeFilterValue);
+    this.initTableData();
   }
 
-  ngAfterViewInit(): void {
-  }
-
-  initTableData(hr = this.currentTimeFilter){
-    const promise = this._tableService.getFlightTableData(hr).toPromise();
+  initTableData(){
+    // var bb = this.validateFilterObject(); // under dev
+    let filterObject = this.getFilterObject();
+    const promise = this._tableService.getFlightTableData(filterObject).toPromise();
     promise.then(
       (data) => {
+        this.resetTableData(data);
         this.isTableDataLoading = false;
-        this.originalData = data;
-        this.resetTableData(this.originalData);
         this.isTableDataValid = true;
       },
       (error) => { 
-        this.isTableDataLoading = false;
         console.log(error);
+        this.isTableDataLoading = false;
         this.isTableDataValid = false;
       }
     );
@@ -69,32 +86,46 @@ export class DatatableComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   } // resetTableDataEnd
 
-  applyFilter() {
-    let fOrigin = this.filterOrigin.toLocaleLowerCase().trim();
-    let fDestination = this.filterDestination.toLocaleLowerCase().trim();
-    var data = _.filter(this.originalData , 
-      function(obj) { 
-        return _.startsWith(obj["origin"], fOrigin) && _.startsWith(obj["destination"], fDestination); 
-      }
-    );
-    this.resetTableData(data);
-  } // applyFilterEnd
+  getFormattedDate(date:Date):string{
+    return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDate();
+  }
 
-  applyTimeFilter() {
-    if(this.currentTimeFilter<this.selectedTimeFilterValue){
-      console.log('getting from server ',this.currentTimeFilter, this.selectedTimeFilterValue);
-      this.initTableData(this.selectedTimeFilterValue);
-      this.currentTimeFilter = this.selectedTimeFilterValue;
+  validateFilterObject(){ // under dev
+    if(this.filterOrigin.match(/^[A-Z]+$/)){
+      console.log("trigger");
+      this._snackBar.open('Origin must contain only Alphabets!', 'close', {
+        duration: 500,
+        horizontalPosition: this.horizontalPosition,
+        verticalPosition: this.verticalPosition,
+      });
+      return false;
     }
-    else{
-      console.log('filtering to ',this.selectedTimeFilterValue);
-    }
+    return true;
+  }
+
+  // Prepare filterObject for API Call
+  getFilterObject(){
+    return {
+      "flightNo":this.filterFlightNo,
+      "legNo": this.filterLegNo,
+      "origin": this.filterOrigin,
+      "destination":this.filterDestination,
+      "startDate": this.getFormattedDate(this.filterStartDate),
+      "endDate": this.getFormattedDate(this.filterEndDate),
+      "time": this.selectedTimeFilterValue
+    };
   }
 
   resetFilter(){
-    this.resetTableData(this.originalData);
-    this.filterDestination = "";
     this.filterOrigin = "";
+    this.filterDestination = "";
+    this.filterFlightNo = "";
+    this.filterLegNo = "";
+    this.selectedTimeFilterValue = this.timeFilters[0];
+    this.filterStartDate = new Date();
+    this.filterEndDate = new Date();
+    // call iff filterObject is set
+    this.initTableData();
   }
 
 }

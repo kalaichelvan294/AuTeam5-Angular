@@ -1,6 +1,5 @@
 import { CardApiService } from './../../services/cardApi.service';
-import { MatIconModule } from '@angular/material/icon';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -9,8 +8,30 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  @Input('cardData')
-  cardData;
+  // cardDataId and api response data id should match
+  public cardStaticData = [
+    {
+      cardTitle:"Domestic",
+      cardHint:"last hour",
+      cardDataId : "domesticCount",
+      cardContent:-1,
+      cardIcon:"flight"
+    },
+    {
+      cardTitle:"International",
+      cardHint:"last hour",
+      cardDataId : "internationalCount",
+      cardContent:-1,
+      cardIcon:"flight_takeoff"
+    },
+    {
+      cardTitle:"Iterations",
+      cardHint:"last hour",
+      cardDataId : "iterationCount",
+      cardContent:-1,
+      cardIcon:"loop",
+    }
+  ];
 
   constructor(private _cardService: CardApiService) { }
   
@@ -19,30 +40,34 @@ export class CardComponent implements OnInit {
   }
 
   initCardContent(){
-    var promise;
-    switch(this.cardData.cardTitle){
-      case "Domestic":
-        promise = this._cardService.getCardDomestic().toPromise();
-        break;
-      case "International":
-        promise = this._cardService.getCardInternational().toPromise();
-        break;
-      case "Iterations":
-        promise = this._cardService.getCardIterations().toPromise();
-        break;
-      default:
-        promise = this._cardService.getCardDomestic().toPromise();
-        break;
-    }
+    let promise = this._cardService.getCardContent().toPromise();
     promise.then( 
       (data) => {
-        this.cardData['cardContent'] = data.cardContent || "Error";
+        Object.entries(data).map((key, i)=> { this.assignCount(key[0], key[1]); });
+        this.assignDefault();
       },
       (error) => {
-        this.cardData['cardContent'] = "Error";
+        console.log("card data Fetch error:"+error);
+        this.assignDefault();
       }
     );
   } // initCardContentEnd
 
+  // Assign card data counts with cardId and cardDataId
+  assignCount(cardId:string, count:number){
+    for(let i=0; i < this.cardStaticData.length; i++ ){
+      if(this.cardStaticData[i].cardDataId == cardId){
+        this.cardStaticData[i].cardContent = count;
+        break;
+      }
+    }
+  }
+
+  // Assign remaining card data counts to 0 to stop loading
+  assignDefault(){
+    for(let i=0; i < this.cardStaticData.length; i++ ){
+      if(this.cardStaticData[i].cardContent == -1){ this.cardStaticData[i].cardContent = 0; }
+    }
+  }
 
 }
