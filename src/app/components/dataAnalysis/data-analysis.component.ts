@@ -6,24 +6,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataAnalysisComponent implements OnInit {
 
-  public cards = [
-    {
-      cardTitle:"Domestic",
-      cardHint:"last hour",
-      cardIcon:"flight"
-    },
-    {
-      cardTitle:"International",
-      cardHint:"last hour",
-      cardIcon:"flight_takeoff"
-    },
-    {
-      cardTitle:"Iterations",
-      cardHint:"last hour",
-      cardIcon:"loop",
-    }
-  ];
-
   constructor() { }
 
   ngOnInit() {

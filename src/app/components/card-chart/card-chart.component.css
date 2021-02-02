@@ -1,0 +1,26 @@
+.card-chart{
+    margin-right : 2%;
+    margin-left : 2%;
+    margin-top: 2%;
+    align-items: center;
+}
+.sec-head{
+    font-size:2rem;
+    font-weight: lighter;
+    margin:5px;
+    margin-bottom: 2px;
+    align-items: center;
+    float: left;
+}
+.card-list{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.filterclass{
+    font-size: 18px;
+    font-weight: lighter;
+}
+::ng-deep .mat-form-field-infix{
+    border-top: 0px;
+}

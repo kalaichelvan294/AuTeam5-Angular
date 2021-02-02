@@ -9,7 +9,6 @@
 .card-title{
     display: flex;
     justify-content: flex-end;
-    font-size: 1 rem;
     padding: 16px;
     font-size: medium;
     font-weight: 300;
@@ -29,8 +28,8 @@
 .card-icon{
     display: flex;
     position: absolute;
-    top: -1px;
-    left: 20%;
+    top: -2px;
+    left: 15%;
     background: linear-gradient(60deg, #ffa726, #EF6C00);
     color: white;
     width: 80px;
@@ -43,7 +42,4 @@
 mat-icon{
     height: 30%;
     width: 30%;
-}
-.card-list{
-    margin: 3%;
 }

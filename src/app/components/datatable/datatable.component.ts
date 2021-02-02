@@ -34,7 +34,6 @@ export class DatatableComponent implements OnInit {
   ];
   public rowPerPage;
   public timeFilters;
-  public selectedTimeFilterValue;
   public isTableDataLoading:boolean;
   public isTableDataValid:boolean;
   public filterOrigin:string;
@@ -45,13 +44,13 @@ export class DatatableComponent implements OnInit {
   public filterLegNo:string;
 
   constructor(private _tableService:TableApiService, private _snackBar: MatSnackBar) {
-    this.rowPerPage = [10, 20, 40, 80, 100];
+    this.rowPerPage = [5, 10, 20, 40, 80, 100]; // mat paginator
+
     this.timeFilters = [ 1, 3, 6, 12, 24 ]; // Last 'x' hours
     this.isTableDataLoading = true;
     this.isTableDataValid = false;
     this.filterStartDate = new Date();
     this.filterEndDate = new Date();
-    this.selectedTimeFilterValue = this.timeFilters[0];
     this.filterDestination = "";
     this.filterOrigin = "";
     this.filterFlightNo = "";
@@ -111,8 +110,7 @@ export class DatatableComponent implements OnInit {
       "origin": this.filterOrigin,
       "destination":this.filterDestination,
       "startDate": this.getFormattedDate(this.filterStartDate),
-      "endDate": this.getFormattedDate(this.filterEndDate),
-      "time": this.selectedTimeFilterValue
+      "endDate": this.getFormattedDate(this.filterEndDate)
     };
   }
 
@@ -121,7 +119,6 @@ export class DatatableComponent implements OnInit {
     this.filterDestination = "";
     this.filterFlightNo = "";
     this.filterLegNo = "";
-    this.selectedTimeFilterValue = this.timeFilters[0];
     this.filterStartDate = new Date();
     this.filterEndDate = new Date();
     // call iff filterObject is set

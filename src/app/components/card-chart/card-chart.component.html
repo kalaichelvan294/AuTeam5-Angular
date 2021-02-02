@@ -1,0 +1,25 @@
+<div class="card-chart">
+  <mat-grid-list cols="5" rowHeight="4:7">
+    <mat-grid-tile colspan="2"> 
+      <div class="card-list">
+        <div class="sec-head">
+          Flights Not Released
+        </div>
+        <app-card2 [(card)]="cardData[0]"></app-card2>
+        <app-card2 [(card)]="cardData[1]"></app-card2>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3"> 
+      <div class="card-list">
+        <div class="sec-head">
+          Alternate Airports
+          <!-- <mat-form-field class="filterclass">
+            <mat-label>Destination</mat-label>
+            <input type="text" #inputDest matInput [(ngModel)]="destination" [value]="inputDest.value.toUpperCase()" />
+          </mat-form-field> -->
+        </div>
+        <app-bar-chart></app-bar-chart>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
