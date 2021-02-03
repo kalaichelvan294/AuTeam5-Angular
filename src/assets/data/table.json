@@ -1,5 +1,5 @@
 [
-    { "flightNo" :1,  "flightZdate" :"2009-09-01",  "legNo" :12,  "origin" :"MSS",  "destination" :"trichy",  "releaseNumber" :1,  "releaseTime" :"2014-07-11 18:53:56"},
+    { "flightNo" :1,  "flightZdate" :"2009-09-01",  "legNo" :12,  "origin" :"MSS",  "destination" :"JKI",  "releaseNumber" :1,  "releaseTime" :"2014-07-11 18:53:56"},
     { "flightNo" :2,  "flightZdate" :"2017-01-01",  "legNo" :321,  "origin" :"TSB",  "destination" :"UBV",  "releaseNumber" :6,  "releaseTime" :"2014-07-11 18:53:56"},
     { "flightNo" :3,  "flightZdate" :"2008-11-01",  "legNo" :2,  "origin" :"WRE",  "destination" :"KVA",  "releaseNumber" :2,  "releaseTime" :"2014-07-11 18:53:56"},
     { "flightNo" :4,  "flightZdate" :"2017-09-01",  "legNo" :321,  "origin" :"KVA",  "destination" :"AND",  "releaseNumber" :3,  "releaseTime" :"2014-07-11 18:53:56"},

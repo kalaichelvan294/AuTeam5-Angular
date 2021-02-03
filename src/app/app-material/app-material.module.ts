@@ -17,6 +17,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -29,7 +31,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatSelectModule, MatFormFieldModule,
     MatProgressSpinnerModule, MatNativeDateModule,
     MatDatepickerModule, MatSnackBarModule,
-    MatTabsModule, MatProgressBarModule
+    MatTabsModule, MatProgressBarModule,
+    MatDividerModule, MatAutocompleteModule
   ]
 })
 export class AppMaterialModule { }

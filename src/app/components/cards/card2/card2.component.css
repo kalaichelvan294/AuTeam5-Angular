@@ -1,7 +1,7 @@
 .card{
     /* margin: 10% 10px 20px 10px; */
     color: rgba(0,0,0,.87);
-    box-shadow: 2px 2px 8px rgba(0,0,0,.05);
+    box-shadow: 2px 2px 8px rgba(0,0,0,.1);
     background-color:rgb(255, 255, 255);
     height : 160px;
     width : 450px;
@@ -14,16 +14,20 @@
     font-size: 1rem;
     font-weight: lighter;
     justify-content: flex-end;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    color: white;
+    /* position: absolute; */
 }
 .card-content{
     display: flex;
     justify-content: space-between;
-    padding-top: 8px;
+    padding-top: 15px;
  }
 .card-data{
     display: flex;
     justify-content: flex-end;
-    padding: 10px 30px 10px 0;
+    padding: 10px 40px 10px 0;
     font-size: 3rem;
     font-weight: lighter;
     align-self: center;
@@ -31,8 +35,9 @@
 .card-icon{
     display: flex;
     position: relative;
-    left: -10px;
-    background: linear-gradient(60deg, #ffa726, #EF6C00);
+    left: 30px;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
     color: white;
     width: 80px;
     height: 80px;

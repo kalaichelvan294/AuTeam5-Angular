@@ -1,8 +1,8 @@
 .bar-chart{
     color: rgba(0,0,0,.87);
     box-shadow: 2px 2px 8px rgba(0,0,0,.05);
-    background-color:rgb(67, 255, 246);
+    background-color:rgb(255, 255, 255);
+    padding: 4px;
     height : 360px;
     width : 680px;
-    margin : 1%;
 }

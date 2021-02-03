@@ -1,24 +1,53 @@
 <div class="card-chart">
-  <mat-grid-list cols="5" rowHeight="4:7">
+   <mat-grid-list cols="5" rowHeight="4.5:1">
+    <mat-grid-tile colspan="2">
+      <div class="sec-head">
+        Flights Not Released
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <div class="sec-head">
+        Alternate Airports
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1">
+      <div class="">
+        <mat-form-field class="example-full-width">
+          <mat-label>Destination</mat-label>
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Destination"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 >
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAlternates($event.option.value)'>
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <mat-grid-list cols="5" rowHeight="4:6">
     <mat-grid-tile colspan="2"> 
       <div class="card-list">
-        <div class="sec-head">
-          Flights Not Released
-        </div>
         <app-card2 [(card)]="cardData[0]"></app-card2>
         <app-card2 [(card)]="cardData[1]"></app-card2>
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan="3"> 
       <div class="card-list">
-        <div class="sec-head">
-          Alternate Airports
-          <!-- <mat-form-field class="filterclass">
-            <mat-label>Destination</mat-label>
-            <input type="text" #inputDest matInput [(ngModel)]="destination" [value]="inputDest.value.toUpperCase()" />
-          </mat-form-field> -->
-        </div>
-        <app-bar-chart></app-bar-chart>
+        <div *ngIf="isChartLoading; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock><mat-spinner [diameter]="30"></mat-spinner></ng-template>
+        <ng-template #elseBlock>
+          <div *ngIf="isChartValid; then chartValidBlock else chartInvalidBlock"></div>
+          <ng-template #chartValidBlock>
+            <app-bar-chart [(barChartLabels)]="chartLabels" [(barChartData)]="chartData" ></app-bar-chart>
+          </ng-template>
+          <ng-template #chartInvalidBlock>Not Found</ng-template>
+        </ng-template>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

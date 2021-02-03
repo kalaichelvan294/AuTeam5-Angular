@@ -1,9 +1,10 @@
 .card{
     /* margin: 10% 10px 20px 10px; */
+    margin-bottom: 30px;
     color: rgba(0,0,0,.87);
-    box-shadow: 2px 2px 8px rgba(0,0,0,.05);
+    box-shadow: 2px 2px 8px rgba(0,0,0,.3);
     width: 350px;
-    min-height: 40px;
+    min-height: 50px;
     background-color:white;
 }
 .card-title{

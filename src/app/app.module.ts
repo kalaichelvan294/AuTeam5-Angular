@@ -15,10 +15,7 @@ import { DataAnalysisComponent } from './components/dataAnalysis/data-analysis.c
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CardChartComponent } from './components/card-chart/card-chart.component';
-import * as PlotlyJS from 'plotly.js/dist/plotly.js';
-import { PlotlyModule } from 'angular-plotly.js';
-
-PlotlyModule.plotlyjs = PlotlyJS;
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -29,7 +26,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     DatatableComponent,
     CardChartComponent,
     CardListComponent,
-    BarChartComponent
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +37,7 @@ PlotlyModule.plotlyjs = PlotlyJS;
     BrowserAnimationsModule,
     AppMaterialModule,
     HttpClientModule,
-    PlotlyModule,
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,3 +1,5 @@
 .card-list{
     margin: 3%;
+    position: realtive;
+    justify-content: space-between;
 }

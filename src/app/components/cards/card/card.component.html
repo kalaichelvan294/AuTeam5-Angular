@@ -6,7 +6,7 @@
         <mat-icon> {{ card['cardIcon'] }} </mat-icon>
     </div>
     <div class="card-data">
-        <div *ngIf="card['cardContent']!=-1; then thenBlock else elseBlock"></div>
+        <div *ngIf="card['cardContent']!='-1'; then thenBlock else elseBlock"></div>
         <ng-template #thenBlock>{{ card['cardContent'] }}</ng-template>
         <ng-template #elseBlock><mat-spinner [diameter]="30"></mat-spinner></ng-template>
     </div>

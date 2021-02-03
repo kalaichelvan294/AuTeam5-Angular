@@ -8,6 +8,7 @@ export class CardApiService {
 
   //dummy
   private _urlCardContent:string = "/assets/data/cardContent.json";
+  private _urlCard2Content:string = "/assets/data/card2Content.json";
 
   //Original
   // private _urlCardContent:string = "/card/getCardContent";
@@ -16,6 +17,9 @@ export class CardApiService {
 
   getCardContent(){
     return this.http.get(this._urlCardContent);
+  }
+  getCard2Content(){
+    return this.http.get(this._urlCard2Content);
   }
 
 }
