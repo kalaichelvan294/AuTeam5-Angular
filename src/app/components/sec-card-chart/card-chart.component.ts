@@ -1,5 +1,5 @@
 import { CardApiService } from 'src/app/services/cardApi.service';
-import { BarChartApiService } from './../../services/barChartApi.service';
+import { BarChartApiService } from '../../services/barChartApi.service';
 import { Component, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';

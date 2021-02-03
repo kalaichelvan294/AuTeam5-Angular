@@ -1,0 +1,15 @@
+[
+    { "flightNo" :1,  "flightZdate" :"2009-09-01",  "legNo" :1, "scheduledIn" :"2014-07-11 18:53:56",  "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :2,  "flightZdate" :"2017-01-01",  "legNo" :5, "scheduledIn" :"2014-07-11 18:53:56",  "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :3,  "flightZdate" :"2008-11-01",  "legNo" :2, "scheduledIn" :"2014-07-11 18:53:56",  "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :4,  "flightZdate" :"2017-09-01",  "legNo" :8, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :5,  "flightZdate" :"2018-02-12",  "legNo" :4, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :6,  "flightZdate" :"2017-09-01",  "legNo" :7, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :7,  "flightZdate" :"2017-12-01",  "legNo" :3, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :8,  "flightZdate" :"2017-09-01",  "legNo" :2, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :9,  "flightZdate" :"2020-06-11",  "legNo" :8, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :10,  "flightZdate" :"2021-01-31",  "legNo" :4, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :12,  "flightZdate" :"2017-09-01",  "legNo" :9, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :11,  "flightZdate" :"2004-10-01",  "legNo" :8, "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"},
+    { "flightNo" :13,  "flightZdate" :"2017-09-01",  "legNo" :2,  "scheduledIn" :"2014-07-11 18:53:56", "scheduledOut" :"2014-07-11 18:53:56"}
+]

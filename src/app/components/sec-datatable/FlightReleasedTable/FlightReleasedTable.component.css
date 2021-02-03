@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+}
+th.mat-sort-header-sorted {
+    color: black;
+}
+th{
+    font-size: larger;
+    color:white;
+    background-color: #E16C20;
+}
+td{
+    font-size: medium;
+}
