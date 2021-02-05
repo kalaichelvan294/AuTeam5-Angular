@@ -1,4 +1,3 @@
-import { CardApiService } from '../../../services/cardApi.service';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

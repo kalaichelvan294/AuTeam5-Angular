@@ -8,8 +8,8 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./FlightScheduledTable.component.css']
 })
 export class FlightScheduledTableComponent implements OnInit {
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sfsort: MatSort;
+  @ViewChild(MatPaginator) sfpaginator: MatPaginator;
   
   @Input()
   public dataSource;
@@ -22,22 +22,16 @@ export class FlightScheduledTableComponent implements OnInit {
   ];
 
   @Input()
-  public rowPerPage;
+  public sfrowPerPage;
   @Input()
-  public timeFilters;
+  public sfisTableDataLoading:boolean;
   @Input()
-  public isTableDataLoading:boolean;
-  @Input()
-  public isTableDataValid:boolean;
+  public sfisTableDataValid:boolean;
 
   constructor() {
    }
 
   ngOnInit() {
-  }
-
-  getFormattedDate(date:Date):string{
-    return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDate();
   }
 
 }

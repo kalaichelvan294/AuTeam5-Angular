@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
@@ -9,8 +9,8 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class FlightReleasedTableComponent implements OnInit {
 
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) rfsort: MatSort;
+  @ViewChild(MatPaginator) rfpaginator: MatPaginator;
   
   @Input()
   public dataSource;
@@ -24,22 +24,16 @@ export class FlightReleasedTableComponent implements OnInit {
     'releaseTime'
   ];
   @Input()
-  public rowPerPage;
+  public rfrowPerPage;
   @Input()
-  public timeFilters;
+  public rfisTableDataLoading:boolean;
   @Input()
-  public isTableDataLoading:boolean;
-  @Input()
-  public isTableDataValid:boolean;
+  public rfisTableDataValid:boolean;
 
   constructor() {
-   }
-
-  ngOnInit() {
   }
 
-  getFormattedDate(date:Date):string{
-    return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDate();
+  ngOnInit() {
   }
 
 }

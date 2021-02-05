@@ -1,3 +1,4 @@
+import { CardTaskService } from './../../services/cardTask.service';
 import { Component, OnInit } from '@angular/core';
 import { CardApiService } from 'src/app/services/cardApi.service';
 
@@ -34,41 +35,25 @@ public cardStaticData = [
   }
 ];
 
-constructor(private _cardService: CardApiService) { }
+constructor(private _cardService: CardApiService, private _cardTask: CardTaskService) { }
 
 ngOnInit() {
   this.initCardContent();
 }
 
+// initialize card contents on page load
 initCardContent(){
   let promise = this._cardService.getCardContent().toPromise();
   promise.then( 
     (data) => {
-      Object.entries(data).map((key, i)=> { this.assignCount(key[0], key[1]); });
-      this.assignDefault();
+      Object.keys(data).forEach(key => { this._cardTask.assignCount(this.cardStaticData, key, data[key]); });
+      this._cardTask.assignDefault(this.cardStaticData);
     },
     (error) => {
       console.log("card data Fetch error:"+error);
-      this.assignDefault();
+      this._cardTask.assignDefault(this.cardStaticData);
     }
   );
 } // initCardContentEnd
-
-// Assign card data counts with cardId and cardDataId
-assignCount(cardId:string, count:number){
-  for(let i=0; i < this.cardStaticData.length; i++ ){
-    if(this.cardStaticData[i].cardDataId == cardId){
-      this.cardStaticData[i].cardContent = count.toString();
-      break;
-    }
-  }
-}
-
-// Assign remaining card data counts to 0 to stop loading
-assignDefault(){
-  for(let i=0; i < this.cardStaticData.length; i++ ){
-    if(this.cardStaticData[i].cardContent == '-1'){ this.cardStaticData[i].cardContent = '0'; }
-  }
-}
 
 }

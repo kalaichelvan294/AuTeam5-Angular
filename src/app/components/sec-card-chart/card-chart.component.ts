@@ -1,3 +1,4 @@
+import { CardTaskService } from './../../services/cardTask.service';
 import { CardApiService } from 'src/app/services/cardApi.service';
 import { BarChartApiService } from '../../services/barChartApi.service';
 import { Component, OnInit, Output } from '@angular/core';
@@ -38,12 +39,17 @@ export class CardChartComponent implements OnInit {
   public filteredOptions: Observable<string[]>;
   public options:string[] = ['VMM', 'HIS', 'VVA', 'PSY', 'KUS', 'KAS'];
 
-  constructor(private _barChartService: BarChartApiService, private _cardService: CardApiService) { 
+  constructor(
+    private _barChartService: BarChartApiService, 
+    private _cardService: CardApiService,
+    private _cardTask: CardTaskService) { 
     this.getBarChartData();
     this.initCardContent();
   }
 
   ngOnInit() {
+    this.myControl.setValue( this.options[0] );
+    this.getAlternates( this.options[0] );
     this.filteredOptions = this.myControl.valueChanges
       .pipe( startWith(''), map(value => this._filter(value)) );
   }
@@ -53,11 +59,13 @@ export class CardChartComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+  // Triggers when destination changed in barchart input
   getAlternates(dest){
     this.destination = dest;
     this.getBarChartData();
   }
 
+  // call api for bar chart data
   getBarChartData(){
     let promise = this._barChartService.getBarChartContent(this.destination).toPromise();
     promise.then( 
@@ -70,48 +78,28 @@ export class CardChartComponent implements OnInit {
           this.isChartValid = true;
         }
         this.isChartLoading = false;
-        // console.log("load completed: ",this.isChartLoading, this.chartData);
       },
       (error) => {
         console.log("card data Fetch error:"+error);
         this.isChartValid = false;
         this.isChartLoading = false;
-        // console.log("error load completed: ",this.isChartLoading, this.chartData);
       }
     );
   }
 
+  // Initialize card data on page load
   initCardContent(){
     let promise = this._cardService.getCard2Content().toPromise();
     promise.then( 
       (data) => {
-        // console.log(data);
-        Object.entries(data).map((key, i)=> { this.assignCount(key[0], key[1]); });
-        this.assignDefault();
+        Object.keys(data).forEach(key => { this._cardTask.assignCount(this.cardData, key, data[key]); });
+        this._cardTask.assignDefault(this.cardData);
       },
       (error) => {
         console.log("card data Fetch error:"+error);
-        this.assignDefault();
+        this._cardTask.assignDefault(this.cardData);
       }
     );
   } // initCardContentEnd
-  
-  // Assign card data counts with cardId and cardDataId
-  assignCount(cardId:string, count:number){
-    for(let i=0; i < this.cardData.length; i++ ){
-      if(this.cardData[i].cardDataId == cardId){
-        this.cardData[i].cardContent = count.toString();
-        break;
-      }
-    }
-  }
-  
-  // Assign remaining card data counts to 0 to stop loading
-  assignDefault(){
-    for(let i=0; i < this.cardData.length; i++ ){
-      if(this.cardData[i].cardContent == '-1'){ this.cardData[i].cardContent = '0'; }
-    }
-  }
-
 
 }

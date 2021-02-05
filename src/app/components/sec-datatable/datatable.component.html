@@ -2,7 +2,6 @@
   <div class="table-head">Flight Reports</div>
 </div>
 <div *ngIf="showFilter;" [@fadeInOut]>
-  <!-- <ng-template #enableFilters> -->
 <div class="filters">
   <div class="filter">
     <mat-form-field>
@@ -54,24 +53,23 @@
       <button mat-raised-button color="accent" (click)="initTable1Data()">Apply</button>
   </div>
 </div>
-<!-- </ng-template> -->
 </div>
-<mat-tab-group #tabGroup mat-align-tabs="start" (selectedTabChange)="tabChanged($event)">
+<mat-tab-group #tabGroup mat-align-tabs="start" (selectedTabChange)="tabChanged($event.index)">
   <mat-tab label="Released">
     <app-FlightReleasedTable 
       [(dataSource)]="dataSource[0]"
-      [(isTableDataLoading)]="isTableDataLoading[0]" 
-      [(isTableDataValid)]="isTableDataValid[0]"
-      [rowPerPage] = "rowPerPage"
+      [(rfisTableDataLoading)]="isTableDataLoading[0]" 
+      [(rfisTableDataValid)]="isTableDataValid[0]"
+      [rfrowPerPage] = "rowPerPage"
       >
     </app-FlightReleasedTable>
   </mat-tab>
   <mat-tab label="Scheduled">
     <app-FlightScheduledTable
     [(dataSource)]="dataSource[1]"
-    [(isTableDataLoading)]="isTableDataLoading[1]" 
-    [(isTableDataValid)]="isTableDataValid[1]"
-    [rowPerPage] = "rowPerPage" 
+    [(sfisTableDataLoading)]="isTableDataLoading[1]" 
+    [(sfisTableDataValid)]="isTableDataValid[1]"
+    [sfrowPerPage] = "rowPerPage" 
     >
     </app-FlightScheduledTable>
   </mat-tab>

@@ -4,7 +4,6 @@ import { TableApiService } from './../../services/tableApi.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import {style, animate, transition, trigger} from '@angular/animations';
-import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-datatable',
@@ -83,8 +82,6 @@ export class DatatableComponent implements OnInit {
         promise = this._tableService.getFlightScheduledTableData().toPromise();
         break;
       default:
-        filterObject = this.getFilterObject();
-        promise = this._tableService.getFlightReleasedTableData(filterObject).toPromise();
         break;
     }
     promise.then(
@@ -104,11 +101,11 @@ export class DatatableComponent implements OnInit {
   resetTableData(data, id:number){
     this.dataSource[id] = new MatTableDataSource(data);
     if(id==0){
-      this.dataSource[id].sort = this.releasedTableChild.sort;
-      this.dataSource[id].paginator = this.releasedTableChild.paginator;
+      this.dataSource[id].sort = this.releasedTableChild.rfsort;
+      this.dataSource[id].paginator = this.releasedTableChild.rfpaginator;
     }else if(id==1){
-      this.dataSource[id].sort = this.scheduledTableChild.sort;
-      this.dataSource[id].paginator = this.scheduledTableChild.paginator;
+      this.dataSource[id].sort = this.scheduledTableChild.sfsort;
+      this.dataSource[id].paginator = this.scheduledTableChild.sfpaginator;
     }
   } // resetTableDataEnd
 
@@ -128,8 +125,8 @@ export class DatatableComponent implements OnInit {
     };
   }
 
-  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
-    switch(tabChangeEvent.index){
+  tabChanged(tabIndex:number): void {
+    switch(tabIndex){
       case 0:
         this.showFilter = true;
         this.initTableData(0);
@@ -139,7 +136,7 @@ export class DatatableComponent implements OnInit {
         this.initTableData(1);
         break;
       default:
-        this.showFilter = true;
+        this.tabChanged(0);
         break;
     }
   }
