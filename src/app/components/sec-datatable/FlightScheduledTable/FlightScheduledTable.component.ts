@@ -10,13 +10,13 @@ import { MatSort } from '@angular/material/sort';
 export class FlightScheduledTableComponent implements OnInit {
   @ViewChild(MatSort) sfsort: MatSort;
   @ViewChild(MatPaginator) sfpaginator: MatPaginator;
-  
+
   @Input()
   public dataSource;
   public tableColumns = [
-    'flightNo', 
-    'flightDate', 
-    'legNo', 
+    'flightNo',
+    'flightZDate',
+    'legNo',
     'scheduledIn',
     'scheduledOut'
   ];

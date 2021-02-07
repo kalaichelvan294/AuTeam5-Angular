@@ -7,14 +7,14 @@ import { Injectable } from '@angular/core';
 export class CardApiService {
 
   //dummy
-  private _urlCardContent:string = "/assets/data/cardContent.json";
-  private _urlCard2Content:string = "/assets/data/card2Content.json";
+  // private _urlCardContent:string = "/assets/data/cardContent.json";
+  // private _urlCard2Content:string = "/assets/data/card2Content.json";
 
   //Original
-  // private _urlCardContent:string = "http://localhost:8080/card/getCardData"
-  // private _urlCard2Content:string = "http://localhost:8080/card/getNotReleased";
+  private _urlCardContent:string = "/card/getCardData"
+  private _urlCard2Content:string = "/card/getNotReleased";
 
-  constructor(private http: HttpClient) { } 
+  constructor(private http: HttpClient) { }
 
   getCardContent(){
     return this.http.get(this._urlCardContent);

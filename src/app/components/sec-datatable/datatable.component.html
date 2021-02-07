@@ -50,15 +50,15 @@
     <button mat-raised-button color="warn" (click)="resetFilter()">Reset</button>
   </div>
   <div class="filter-btn">
-      <button mat-raised-button color="accent" (click)="initTable1Data()">Apply</button>
+      <button mat-raised-button color="accent" (click)="initTableData(0)">Apply</button>
   </div>
 </div>
 </div>
 <mat-tab-group #tabGroup mat-align-tabs="start" (selectedTabChange)="tabChanged($event.index)">
   <mat-tab label="Released">
-    <app-FlightReleasedTable 
+    <app-FlightReleasedTable
       [(dataSource)]="dataSource[0]"
-      [(rfisTableDataLoading)]="isTableDataLoading[0]" 
+      [(rfisTableDataLoading)]="isTableDataLoading[0]"
       [(rfisTableDataValid)]="isTableDataValid[0]"
       [rfrowPerPage] = "rowPerPage"
       >
@@ -67,9 +67,9 @@
   <mat-tab label="Scheduled">
     <app-FlightScheduledTable
     [(dataSource)]="dataSource[1]"
-    [(sfisTableDataLoading)]="isTableDataLoading[1]" 
+    [(sfisTableDataLoading)]="isTableDataLoading[1]"
     [(sfisTableDataValid)]="isTableDataValid[1]"
-    [sfrowPerPage] = "rowPerPage" 
+    [sfrowPerPage] = "rowPerPage"
     >
     </app-FlightScheduledTable>
   </mat-tab>

@@ -13,10 +13,10 @@ import {style, animate, transition, trigger} from '@angular/animations';
     trigger('fadeInOut', [
       transition(':enter', [   // :enter is alias to 'void => *'
         style({opacity:0}),
-        animate('600ms ease-in', style({opacity:1})) 
+        animate('600ms ease-in', style({opacity:1}))
       ]),
       transition(':leave', [   // :leave is alias to '* => void'
-        animate('600ms ease-in', style({opacity:0})) 
+        animate('600ms ease-in', style({opacity:0}))
       ])
     ])
   ]
@@ -41,7 +41,7 @@ export class DatatableComponent implements OnInit {
   ];
   public rowPerPage;
   public timeFilters;
-  
+
   public isTableDataLoading:boolean[];
   public isTableDataValid:boolean[];
 
@@ -84,13 +84,16 @@ export class DatatableComponent implements OnInit {
       default:
         break;
     }
+
+
     promise.then(
       (data) => {
+        console.log(data);
         this.resetTableData(data, id);
         this.isTableDataLoading[id] = false;
         this.isTableDataValid[id] = true;
       },
-      (error) => { 
+      (error) => {
         console.log(error);
         this.isTableDataLoading[id] = false;
         this.isTableDataValid[id] = false;
@@ -110,14 +113,30 @@ export class DatatableComponent implements OnInit {
   } // resetTableDataEnd
 
   getFormattedDate(date:Date):string{
-    return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDate();
+   let tMonth = ((date.getMonth()+1) < 10) ? "0"+(date.getMonth()+1): date.getMonth()+1;
+    let tDate = (date.getDate() < 10) ? "0"+date.getDate(): date.getDate();
+    return date.getFullYear()+"-"+tMonth+"-"+tDate;
   }
 
   // Prepare filterObject for API Call
   getFilterObject(){
+    let tFlightNo;
+    let tLegNo;
+    if(this.filterFlightNo!==""){
+        tFlightNo = this.filterFlightNo
+    }
+    else{
+      tFlightNo = 0;
+    }
+     if(this.filterLegNo!==""){
+        tLegNo = this.filterLegNo
+    }
+    else{
+      tLegNo = 0;
+    }
     return {
-      "flightNo":this.filterFlightNo,
-      "legNo": this.filterLegNo,
+      "flightNo":tFlightNo,
+      "legNo": tLegNo,
       "origin": this.filterOrigin,
       "destination":this.filterDestination,
       "startDate": this.getFormattedDate(this.filterStartDate),
