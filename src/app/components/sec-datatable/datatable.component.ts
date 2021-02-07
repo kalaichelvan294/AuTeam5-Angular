@@ -31,12 +31,12 @@ export class DatatableComponent implements OnInit {
 
   public dataSource = [];
   public tableColumns = [
-    'flightNo', 
-    'flightDate', 
-    'legNo', 
-    'origin', 
-    'destination', 
-    'releaseNumber', 
+    'flightNo',
+    'flightDate',
+    'legNo',
+    'origin',
+    'destination',
+    'releaseNumber',
     'releaseTime'
   ];
   public rowPerPage;

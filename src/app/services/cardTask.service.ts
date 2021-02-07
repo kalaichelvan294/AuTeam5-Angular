@@ -17,7 +17,7 @@ assignCount(cardStaticData, cardId:string, count:number){
   }
 }
 
-// Assign remaining card data counts to 0 to stop loading
+// Assign remaining card data counts from -1 to 0 -> stops loading
 assignDefault(cardStaticData){
   for(let i=0; i < cardStaticData.length; i++ ){
     if(cardStaticData[i].cardContent == '-1'){ cardStaticData[i].cardContent = '0'; }

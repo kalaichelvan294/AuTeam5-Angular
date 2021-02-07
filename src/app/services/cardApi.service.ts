@@ -11,7 +11,8 @@ export class CardApiService {
   private _urlCard2Content:string = "/assets/data/card2Content.json";
 
   //Original
-  // private _urlCardContent:string = "/card/getCardContent";
+  // private _urlCardContent:string = "http://localhost:8080/card/getCardData"
+  // private _urlCard2Content:string = "http://localhost:8080/card/getNotReleased";
 
   constructor(private http: HttpClient) { } 
 

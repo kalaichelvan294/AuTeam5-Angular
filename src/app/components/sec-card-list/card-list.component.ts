@@ -11,6 +11,8 @@ export class CardListComponent implements OnInit {
 
 // cardDataId and api response data id should match
 public cardHint:string = "Last Hour";
+// Card data 
+// -1 indicates data has been loading...
 public cardStaticData = [
   {
     cardTitle:"Domestic",
@@ -43,8 +45,7 @@ ngOnInit() {
 
 // initialize card contents on page load
 initCardContent(){
-  let promise = this._cardService.getCardContent().toPromise();
-  promise.then( 
+  this._cardService.getCardContent().subscribe(
     (data) => {
       Object.keys(data).forEach(key => { this._cardTask.assignCount(this.cardStaticData, key, data[key]); });
       this._cardTask.assignDefault(this.cardStaticData);

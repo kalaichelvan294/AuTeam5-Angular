@@ -35,9 +35,9 @@ export class CardChartComponent implements OnInit {
   public chartData;
   public isChartLoading = true;
   public isChartValid = false;
-  myControl = new FormControl();
+  barInputControl = new FormControl();
   public filteredOptions: Observable<string[]>;
-  public options:string[] = ['VMM', 'HIS', 'VVA', 'PSY', 'KUS', 'KAS'];
+  public options:string[] = ['KAL', 'HIS', 'VVA', 'PSY', 'KUS', 'KAS'];
 
   constructor(
     private _barChartService: BarChartApiService, 
@@ -48,9 +48,9 @@ export class CardChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myControl.setValue( this.options[0] );
+    this.barInputControl.setValue( this.options[0] );
     this.getAlternates( this.options[0] );
-    this.filteredOptions = this.myControl.valueChanges
+    this.filteredOptions = this.barInputControl.valueChanges
       .pipe( startWith(''), map(value => this._filter(value)) );
   }
 
@@ -67,8 +67,7 @@ export class CardChartComponent implements OnInit {
 
   // call api for bar chart data
   getBarChartData(){
-    let promise = this._barChartService.getBarChartContent(this.destination).toPromise();
-    promise.then( 
+    this._barChartService.getBarChartContent(this.destination).subscribe(
       (cdata) => {
         this.chartData = [{ data: cdata["chartDataValues"], label: this.destination }];
         this.chartLabels = cdata["chartLabels"];
@@ -89,8 +88,7 @@ export class CardChartComponent implements OnInit {
 
   // Initialize card data on page load
   initCardContent(){
-    let promise = this._cardService.getCard2Content().toPromise();
-    promise.then( 
+    this._cardService.getCard2Content().subscribe(
       (data) => {
         Object.keys(data).forEach(key => { this._cardTask.assignCount(this.cardData, key, data[key]); });
         this._cardTask.assignDefault(this.cardData);

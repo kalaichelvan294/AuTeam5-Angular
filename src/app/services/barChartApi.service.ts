@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +8,33 @@ import { Injectable } from '@angular/core';
 export class BarChartApiService {
 
   // dummy url
-  public _urlBarChart = "/assets/data/barChartContent.json";
+  // public _urlBarChart = "/assets/data/barChartContent.json";
+
+  // Original
+  public _urlBarChart = "http://localhost:8080/card/getAlternateLocation/";
 
   constructor(private http: HttpClient) { }
   
-  getBarChartContent(destination:string){
-    // console.log(this._urlBarChart+'/'+destination);
+  getBarChartContent(destination:string){    
+    // return this.http.get<any>(this._urlBarChart);
     
-    return this.http.get<any>(this._urlBarChart);
-    // return this.http.get<any>(this._urlBarChart+'/'+destination);
+    return this.http.get(this._urlBarChart+destination)
+    .pipe(
+      map(
+        (data:{count:string,location:string}[])=>{
+          let chartLabels = [];
+          let chartDataValues = [];
+          data.forEach(i=>{
+                chartLabels.push(i.location);
+                chartDataValues.push(i.count);
+          })
+        return  {
+          chartLabels ,
+          chartDataValues
+        };
+        }
+      )
+    );
   }
 
 }

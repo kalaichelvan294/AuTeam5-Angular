@@ -18,7 +18,7 @@
                  placeholder="Pick one"
                  aria-label="Destination"
                  matInput
-                 [formControl]="myControl"
+                 [formControl]="barInputControl"
                  [matAutocomplete]="auto"
                  >
           <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getAlternates($event.option.value)'>
