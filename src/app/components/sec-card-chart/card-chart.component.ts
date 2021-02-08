@@ -28,21 +28,25 @@ export class CardChartComponent implements OnInit {
       cardIcon:"flight"
     }
   ];
-  public destination:string="";
+  public destination:string;
   @Output()
-  public chartLabels;
+  public chartLabels:string[];
   @Output()
   public chartData;
-  public isChartLoading = true;
-  public isChartValid = false;
+  public isChartLoading:boolean;
+  public isChartValid:boolean;
   barInputControl = new FormControl();
   public filteredOptions: Observable<string[]>;
-  public options:string[] = ['KLA', 'KIJ', 'VVA'];
+  public options:string[];
 
   constructor(
     private _barChartService: BarChartApiService,
     private _cardService: CardApiService,
     private _cardTask: CardTaskService) { 
+      this.options = ['KLA', 'KIJ', 'VVA'];
+      this.destination = "";
+      this.isChartLoading = true;
+      this.isChartValid = false;
   }
 
   ngOnInit() {

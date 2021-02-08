@@ -11,11 +11,11 @@ import {style, animate, transition, trigger} from '@angular/animations';
   styleUrls: ['./datatable.component.css'],
   animations: [
     trigger('fadeInOut', [
-      transition(':enter', [   // :enter is alias to 'void => *'
+      transition(':enter', [ 
         style({opacity:0}),
         animate('600ms ease-in', style({opacity:1}))
       ]),
-      transition(':leave', [   // :leave is alias to '* => void'
+      transition(':leave', [ 
         animate('600ms ease-in', style({opacity:0}))
       ])
     ])
@@ -28,24 +28,15 @@ export class DatatableComponent implements OnInit {
   @ViewChild(FlightScheduledTableComponent) scheduledTableChild: FlightScheduledTableComponent;
   @ViewChild('tabGroup') tabGroup;
 
-  public dataSource = [];
-  public tableColumns = [
-    'flightNo',
-    'flightDate',
-    'legNo',
-    'origin',
-    'destination',
-    'releaseNumber',
-    'releaseTime'
-  ];
-  public rowPerPage;
-  public timeFilters;
+  public dataSource;
+  public tableColumns:string[];
+  public rowPerPage:number[];
 
   public isTableDataLoading:boolean[];
   public isTableDataValid:boolean[];
 
-  public showFilter:boolean = true;
-  public selectedTabIndex = 0;
+  public showFilter:boolean;
+  public selectedTabIndex:number;
 
   public filterOrigin:string;
   public filterDestination:string;
@@ -55,13 +46,25 @@ export class DatatableComponent implements OnInit {
   public filterLegNo:string;
 
   constructor(private _tableService:TableApiService) {
-    this.rowPerPage = [5, 10, 20, 40, 80, 100]; // mat paginator
+    this.rowPerPage = [5, 10, 20, 40, 80, 100];
+    this.tableColumns = [
+      'flightNo',
+      'flightDate',
+      'legNo',
+      'origin',
+      'destination',
+      'releaseNumber',
+      'releaseTime'
+    ];
+    this.dataSource = [];
     this.filterStartDate = new Date();
     this.filterEndDate = new Date();
     this.filterDestination = "";
     this.filterOrigin = "";
     this.filterFlightNo = "";
     this.filterLegNo = "";
+    this.selectedTabIndex = 0;
+    this.showFilter = true;
     this.isTableDataLoading = [true, true];
     this.isTableDataValid = [false, false];
   }
@@ -85,8 +88,6 @@ export class DatatableComponent implements OnInit {
       default:
         break;
     }
-    console.log(filterObject);
-    
     promise.then(
       (data) => {
         console.log(data);
@@ -114,7 +115,8 @@ export class DatatableComponent implements OnInit {
   } // resetTableDataEnd
 
   getFormattedDate(date:Date):string{
-   let tMonth = ((date.getMonth()+1) < 10) ? "0"+(date.getMonth()+1): date.getMonth()+1;
+    let tMonth:any = date.getMonth()+1;
+    tMonth = (tMonth < 10) ? "0"+ tMonth : tMonth+1;
     let tDate = (date.getDate() < 10) ? "0"+date.getDate(): date.getDate();
     return date.getFullYear()+"-"+tMonth+"-"+tDate;
   }
@@ -135,19 +137,19 @@ export class DatatableComponent implements OnInit {
 
   tabChanged(tabIndex:number): void {
     this.selectedTabIndex = tabIndex;
+    this.initTableData(tabIndex);
     switch(tabIndex){
       case 0:
         this.showFilter = true;
-        this.initTableData(0);
         break;
       case 1:
         this.showFilter = false;
-        this.initTableData(1);
         break;
       default:
         this.tabChanged(0);
         break;
     }
+
   }
 
   resetFilter(){

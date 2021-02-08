@@ -17,10 +17,10 @@ export class CardApiService {
   constructor(private http: HttpClient) { }
 
   getCardContent(){
-    return this.http.get(this._urlCardContent);
+    return this.http.get<object>(this._urlCardContent);
   }
   getCard2Content(){
-    return this.http.get(this._urlCard2Content);
+    return this.http.get<object>(this._urlCard2Content);
   }
 
 }

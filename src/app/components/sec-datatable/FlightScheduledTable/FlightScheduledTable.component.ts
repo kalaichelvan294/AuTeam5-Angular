@@ -22,7 +22,7 @@ export class FlightScheduledTableComponent implements OnInit {
   ];
 
   @Input()
-  public sfrowPerPage;
+  public sfrowPerPage:number[];
   @Input()
   public sfisTableDataLoading:boolean;
   @Input()

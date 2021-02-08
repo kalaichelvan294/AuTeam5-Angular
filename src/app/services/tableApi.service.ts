@@ -18,7 +18,7 @@ export class TableApiService {
 
   constructor(private http: HttpClient) { }
 
-  getFlightReleasedTableData(filterObject){
+  getFlightReleasedTableData(filterObject:object){
     // console.log(this._urlFlightTableData+'/'+filterObject);
     return this.http.post<FlightDataReleasedElement[]>(this._urlFlightReleasedTableData,filterObject);
   }
@@ -27,5 +27,4 @@ export class TableApiService {
     // console.log(this._urlFlightTableData+'/'+filterObject);
     return this.http.get<FlightDataScheduledElement[]>(this._urlFlightScheduledTableData);
   }
-
 }

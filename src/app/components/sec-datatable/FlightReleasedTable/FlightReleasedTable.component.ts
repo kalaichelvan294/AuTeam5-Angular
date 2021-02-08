@@ -24,7 +24,7 @@ export class FlightReleasedTableComponent implements OnInit {
     'releaseTime'
   ];
   @Input()
-  public rfrowPerPage;
+  public rfrowPerPage:number[];
   @Input()
   public rfisTableDataLoading:boolean;
   @Input()

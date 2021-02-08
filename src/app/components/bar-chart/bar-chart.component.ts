@@ -29,12 +29,12 @@ export class BarChartComponent implements OnInit {
   };
 
   @Input()
-  public barChartLabels;
-  public barChartType: ChartType ='horizontalBar';
-  public barChartLegend = true;
+  public barChartLabels:string[];
+  public barChartType: ChartType;
+  public barChartLegend:boolean;
   @Input()
   public barChartData: ChartDataSets[];
-  public chartColors: Array<any>= [
+  public chartColors: Array<object>= [
     {
       backgroundColor: '#01BAEF',
       borderColor: 'rgba(225,255,255,0.2)',
@@ -47,10 +47,12 @@ export class BarChartComponent implements OnInit {
   public showChart:boolean = false;
 
   constructor() { 
+    this.barChartType ='horizontalBar';
+    this.showChart = true;
+    this.barChartLegend = true;
   }
 
   ngOnInit() {
-    this.showChart = true;
   }
 
 }

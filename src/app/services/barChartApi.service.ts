@@ -11,16 +11,13 @@ export class BarChartApiService {
   // public _urlBarChart = "/assets/data/barChartContent.json";
 
   // Original
-  public _urlBarChart = "/card/getAlternateLocation/";
+  public _urlBarChart:string = "/card/getAlternateLocation/";
 
   constructor(private http: HttpClient) { }
 
   getBarChartContent(destination:string){
-    
-    
-    // return this.http.get<any>(this._urlBarChart);
-
-  return this.http.get(this._urlBarChart+destination)
+  // return this.http.get(this._urlBarChart);
+  return this.http.get<object>(this._urlBarChart+destination)
     .pipe(
       map(
         (data:{count:string,location:string}[])=>{
@@ -30,7 +27,7 @@ export class BarChartApiService {
                 chartLabels.push(i.location);
                 chartDataValues.push(i.count);
           })
-        return  {
+        return {
           chartLabels ,
           chartDataValues
         };
