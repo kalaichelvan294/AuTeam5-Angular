@@ -9,18 +9,19 @@ import { FlightDataScheduledElement } from '../models/FlightDataScheduledElement
 export class TableApiService {
 
   // dummy
-  // private _urlFlightReleasedTableData:string = "/assets/data/releasedTable.json";
-  // private _urlFlightScheduledTableData:string = "/assets/data/scheduledTable.json";
+  private _urlFlightReleasedTableData:string = "/assets/data/releasedTable.json";
+  private _urlFlightScheduledTableData:string = "/assets/data/scheduledTable.json";
 
   // Original
-  private _urlFlightReleasedTableData:string = "http://localhost:8080/table/getDataInitial";
-  private _urlFlightScheduledTableData:string = "http://localhost:8080/table/getNotReleasedData";
+  // private _urlFlightReleasedTableData:string = "table/getFilterData";
+  // private _urlFlightScheduledTableData:string = "table/getNotReleasedData";
 
   constructor(private http: HttpClient) { } 
 
   getFlightReleasedTableData(filterObject){
     // console.log(this._urlFlightTableData+'/'+filterObject);
     return this.http.get<FlightDataReleasedElement[]>(this._urlFlightReleasedTableData);
+    // return this.http.post<FlightDataReleasedElement[]>(this._urlFlightReleasedTableData, filterObject);
   }
 
   getFlightScheduledTableData(){

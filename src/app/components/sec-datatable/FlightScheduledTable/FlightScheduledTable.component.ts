@@ -15,7 +15,7 @@ export class FlightScheduledTableComponent implements OnInit {
   public dataSource;
   public tableColumns = [
     'flightNo', 
-    'flightDate', 
+    'flightZDate', 
     'legNo', 
     'scheduledIn',
     'scheduledOut'
@@ -29,7 +29,7 @@ export class FlightScheduledTableComponent implements OnInit {
   public sfisTableDataValid:boolean;
 
   constructor() {
-   }
+  }
 
   ngOnInit() {
   }

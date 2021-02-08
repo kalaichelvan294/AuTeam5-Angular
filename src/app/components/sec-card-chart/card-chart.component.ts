@@ -54,6 +54,7 @@ export class CardChartComponent implements OnInit {
       .pipe( startWith(''), map(value => this._filter(value)) );
   }
 
+  // barchart 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.options.filter(option => option.toLowerCase().includes(filterValue));

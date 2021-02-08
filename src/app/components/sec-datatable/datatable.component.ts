@@ -46,6 +46,8 @@ export class DatatableComponent implements OnInit {
   public isTableDataValid:boolean[];
 
   public showFilter:boolean = true;
+  public selectedTabIndex = 0;
+
   public filterOrigin:string;
   public filterDestination:string;
   public filterStartDate:Date;
@@ -70,7 +72,7 @@ export class DatatableComponent implements OnInit {
     this.initTableData(0);
   }
 
-  initTableData(id){
+  initTableData(id = this.selectedTabIndex){
     let promise;
     let filterObject;
     switch(id){
@@ -84,6 +86,8 @@ export class DatatableComponent implements OnInit {
       default:
         break;
     }
+    console.log(filterObject);
+    
     promise.then(
       (data) => {
         this.resetTableData(data, id);
@@ -110,14 +114,18 @@ export class DatatableComponent implements OnInit {
   } // resetTableDataEnd
 
   getFormattedDate(date:Date):string{
-    return date.getFullYear()+"/"+date.getMonth()+"/"+date.getDate();
+    let tMonth = (date.getMonth() < 10) ? "0"+date.getMonth(): date.getMonth();
+    let tDate = (date.getDate() < 10) ? "0"+date.getDate(): date.getDate();
+    return date.getFullYear()+"-"+tMonth+"-"+tDate;
   }
 
   // Prepare filterObject for API Call
   getFilterObject(){
+    let tFlightNo = (this.filterFlightNo=="")? 0 : this.filterFlightNo;
+    let tLegNo = (this.filterLegNo=="")? 0 : this.filterLegNo;
     return {
-      "flightNo":this.filterFlightNo,
-      "legNo": this.filterLegNo,
+      "flightNo":tFlightNo,
+      "legNo": tLegNo,
       "origin": this.filterOrigin,
       "destination":this.filterDestination,
       "startDate": this.getFormattedDate(this.filterStartDate),
@@ -126,6 +134,7 @@ export class DatatableComponent implements OnInit {
   }
 
   tabChanged(tabIndex:number): void {
+    this.selectedTabIndex = tabIndex;
     switch(tabIndex){
       case 0:
         this.showFilter = true;

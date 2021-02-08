@@ -8,15 +8,16 @@ import { map } from 'rxjs/operators';
 export class BarChartApiService {
 
   // dummy url
-  // public _urlBarChart = "/assets/data/barChartContent.json";
+  public _urlBarChart = "/assets/data/barChartContent.json";
 
   // Original
-  public _urlBarChart = "http://localhost:8080/card/getAlternateLocation/";
+  // public _urlBarChart = "card/getAlternateLocation/";
 
   constructor(private http: HttpClient) { }
   
   getBarChartContent(destination:string){    
-    // return this.http.get<any>(this._urlBarChart);
+    
+    return this.http.get<any>(this._urlBarChart);
     
     return this.http.get(this._urlBarChart+destination)
     .pipe(

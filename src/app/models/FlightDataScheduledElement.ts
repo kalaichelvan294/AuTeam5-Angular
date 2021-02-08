@@ -1,6 +1,6 @@
 export interface FlightDataScheduledElement {
     flightNo : number;
-    flightZdate : string;
+    flightZDate : string;
     legNo : number;
     scheduledIn : string;
     scheduledOut : string;
