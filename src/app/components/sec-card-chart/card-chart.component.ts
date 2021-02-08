@@ -37,10 +37,10 @@ export class CardChartComponent implements OnInit {
   public isChartValid = false;
   barInputControl = new FormControl();
   public filteredOptions: Observable<string[]>;
-  public options:string[] = ['KAL', 'HIS', 'VVA', 'PSY', 'KUS', 'KAS'];
+  public options:string[] = ['KLA', 'HIS', 'VVA', 'PSY', 'KUS', 'KAS'];
 
   constructor(
-    private _barChartService: BarChartApiService, 
+    private _barChartService: BarChartApiService,
     private _cardService: CardApiService,
     private _cardTask: CardTaskService) { 
   }

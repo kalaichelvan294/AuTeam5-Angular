@@ -13,10 +13,10 @@ import {style, animate, transition, trigger} from '@angular/animations';
     trigger('fadeInOut', [
       transition(':enter', [   // :enter is alias to 'void => *'
         style({opacity:0}),
-        animate('600ms ease-in', style({opacity:1})) 
+        animate('600ms ease-in', style({opacity:1}))
       ]),
       transition(':leave', [   // :leave is alias to '* => void'
-        animate('600ms ease-in', style({opacity:0})) 
+        animate('600ms ease-in', style({opacity:0}))
       ])
     ])
   ]
@@ -40,7 +40,7 @@ export class DatatableComponent implements OnInit {
   ];
   public rowPerPage;
   public timeFilters;
-  
+
   public isTableDataLoading:boolean[];
   public isTableDataValid:boolean[];
 
@@ -89,11 +89,12 @@ export class DatatableComponent implements OnInit {
     
     promise.then(
       (data) => {
+        console.log(data);
         this.resetTableData(data, id);
         this.isTableDataLoading[id] = false;
         this.isTableDataValid[id] = true;
       },
-      (error) => { 
+      (error) => {
         console.log(error);
         this.isTableDataLoading[id] = false;
         this.isTableDataValid[id] = false;
@@ -113,7 +114,7 @@ export class DatatableComponent implements OnInit {
   } // resetTableDataEnd
 
   getFormattedDate(date:Date):string{
-    let tMonth = (date.getMonth() < 10) ? "0"+date.getMonth(): date.getMonth();
+   let tMonth = ((date.getMonth()+1) < 10) ? "0"+(date.getMonth()+1): date.getMonth()+1;
     let tDate = (date.getDate() < 10) ? "0"+date.getDate(): date.getDate();
     return date.getFullYear()+"-"+tMonth+"-"+tDate;
   }
