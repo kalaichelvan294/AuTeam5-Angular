@@ -22,3 +22,11 @@
     font-weight: lighter;
     margin-top: 5px;
 }
+
+
+.dataNotFound{
+    margin: 10px;
+    padding:10px;
+    color:white;
+    background-color: rgb(0, 159, 199);
+}

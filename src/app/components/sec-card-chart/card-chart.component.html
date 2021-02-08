@@ -46,7 +46,9 @@
           <ng-template #chartValidBlock>
             <app-bar-chart [(barChartLabels)]="chartLabels" [(barChartData)]="chartData" ></app-bar-chart>
           </ng-template>
-          <ng-template #chartInvalidBlock>Not Found</ng-template>
+          <ng-template #chartInvalidBlock>
+            <div class="dataNotFound">Not Found</div>
+          </ng-template>
         </ng-template>
       </div>
     </mat-grid-tile>

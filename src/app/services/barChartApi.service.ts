@@ -16,6 +16,8 @@ export class BarChartApiService {
   constructor(private http: HttpClient) { }
 
   getBarChartContent(destination:string){
+    
+    
     // return this.http.get<any>(this._urlBarChart);
 
   return this.http.get(this._urlBarChart+destination)

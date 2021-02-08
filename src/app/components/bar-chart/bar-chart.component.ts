@@ -14,12 +14,16 @@ export class BarChartComponent implements OnInit {
       xAxes: [{
           gridLines: {
               display:false
+          },
+          ticks: {
+            stepSize: 1,
+            beginAtZero: true
           }
       }],
       yAxes: [{
           gridLines: {
               display:false
-          }   
+          }
       }]
     }
   };
