@@ -43,11 +43,10 @@ export class CardChartComponent implements OnInit {
     private _barChartService: BarChartApiService, 
     private _cardService: CardApiService,
     private _cardTask: CardTaskService) { 
-    this.getBarChartData();
-    this.initCardContent();
   }
 
   ngOnInit() {
+    this.initCardContent();
     this.barInputControl.setValue( this.options[0] );
     this.getAlternates( this.options[0] );
     this.filteredOptions = this.barInputControl.valueChanges

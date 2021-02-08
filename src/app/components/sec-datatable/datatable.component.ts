@@ -23,7 +23,6 @@ import {style, animate, transition, trigger} from '@angular/animations';
 })
 export class DatatableComponent implements OnInit {
 
-
   // View childs of sub table components to set pagination and sorting to data source from here
   @ViewChild(FlightReleasedTableComponent) releasedTableChild: FlightReleasedTableComponent;
   @ViewChild(FlightScheduledTableComponent) scheduledTableChild: FlightScheduledTableComponent;
@@ -69,7 +68,7 @@ export class DatatableComponent implements OnInit {
 
   ngOnInit() {
     // Initialize only table 1 with table index
-    this.initTableData(0);
+    this.initTableData();
   }
 
   initTableData(id = this.selectedTabIndex){
